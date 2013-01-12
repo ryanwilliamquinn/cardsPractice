@@ -1,0 +1,165 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'testacular' ]
+info using npm@1.1.0-3
+info using node@v0.8.16
+verbose /usr/bin/node node symlink
+verbose config file /home/rquinn/.npmrc
+verbose config file /usr/etc/npmrc
+verbose config file /usr/local/lib/node_modules/npm/npmrc
+verbose cache add [ 'testacular', null ]
+silly cache add: name, spec, args [ undefined, 'testacular', [ 'testacular', null ] ]
+verbose parsed url { pathname: 'testacular',
+verbose parsed url   path: 'testacular',
+verbose parsed url   href: 'testacular' }
+verbose addNamed [ 'testacular', '' ]
+verbose addNamed [ null, '' ]
+silly name, range, hasData [ 'testacular', '', false ]
+verbose raw, before any munging testacular
+verbose url resolving [ 'https://registry.npmjs.org/', './testacular' ]
+verbose url resolved https://registry.npmjs.org/testacular
+verbose etag "3YYJT3QSC5H8OQWON6D2UGXAW"
+http GET https://registry.npmjs.org/testacular
+http 304 https://registry.npmjs.org/testacular
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"3YYJT3QSC5H8OQWON6D2UGXAW"',
+silly get cb     date: 'Sat, 12 Jan 2013 01:21:48 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag testacular from cache
+silly name, range, hasData 2 [ 'testacular', '', true ]
+silly versions [ 'testacular',
+silly versions   [ '0.0.7',
+silly versions     '0.0.8',
+silly versions     '0.0.9',
+silly versions     '0.0.10',
+silly versions     '0.0.11',
+silly versions     '0.0.12',
+silly versions     '0.0.13',
+silly versions     '0.0.14',
+silly versions     '0.0.15',
+silly versions     '0.0.16',
+silly versions     '0.0.17',
+silly versions     '0.1.0',
+silly versions     '0.1.1',
+silly versions     '0.1.2',
+silly versions     '0.1.3',
+silly versions     '0.2.0',
+silly versions     '0.3.0',
+silly versions     '0.3.1',
+silly versions     '0.3.2',
+silly versions     '0.3.3',
+silly versions     '0.3.4',
+silly versions     '0.3.5',
+silly versions     '0.3.6',
+silly versions     '0.3.7',
+silly versions     '0.2.1',
+silly versions     '0.3.8',
+silly versions     '0.3.9',
+silly versions     '0.3.10',
+silly versions     '0.3.11',
+silly versions     '0.3.12',
+silly versions     '0.4.0',
+silly versions     '0.5.0',
+silly versions     '0.5.1',
+silly versions     '0.5.2',
+silly versions     '0.5.3',
+silly versions     '0.5.4',
+silly versions     '0.5.5',
+silly versions     '0.5.6',
+silly versions     '0.5.7' ] ]
+verbose bin dist [ '0.8-ares1.7.5-DEV-evundefined-openssl1.0.0f-v83.11.10.25-linux-x64-2.6.32-36-generic',
+verbose bin dist   { shasum: '03d7c888937a0ccacc75a30f452ef838a6edef9b',
+verbose bin dist     tarball: 'http://registry.npmjs.org/testacular/-/testacular-0.4.0.tgz' } ]
+verbose caching /home/rquinn/.npm/testacular/0.4.0/package/package.json
+verbose loadDefaults testacular@0.4.0
+silly resolved [ { name: 'testacular',
+silly resolved     description: 'Spectacular Test Runner for JavaScript.',
+silly resolved     homepage: 'http://vojtajina.github.com/testacular/',
+silly resolved     bugs: { url: 'https://github.com/vojtajina/testacular/issues' },
+silly resolved     keywords: 
+silly resolved      [ 'Testacular',
+silly resolved        'nodejs',
+silly resolved        'js',
+silly resolved        'javascript',
+silly resolved        'testing',
+silly resolved        'test',
+silly resolved        'remote',
+silly resolved        'execution' ],
+silly resolved     author: { name: 'Vojta Jína', email: 'vojta.jina@gmail.com' },
+silly resolved     contributors: 
+silly resolved      [ { name: 'Igor Minár', email: 'igor.minar@gmail.com' },
+silly resolved        { name: 'Peter Bacon Darwin', email: 'pete@bacondarwin.com' },
+silly resolved        { name: 'Andy Joslin', email: 'andytjoslin@gmail.com' },
+silly resolved        { name: 'Marcello Nuccio', email: 'marcello.nuccio@gmail.com' },
+silly resolved        { name: 'Shyam Seshadri', email: 'shyamseshadri@gmail.com' },
+silly resolved        { name: 'Peter Swan', email: 'pete@indabamusic.com' },
+silly resolved        { name: 'Bulat Shakirzyanov', email: 'mallluhuct@gmail.com' },
+silly resolved        { name: 'David Jensen', email: 'david.lgj@gmail.com' },
+silly resolved        { name: 'Ruben Orduz', email: 'rubenoz+github@gmail.com' },
+silly resolved        { name: 'Nish Patel', email: 'nishantpatel611@gmail.com' },
+silly resolved        { name: 'Friedel Ziegelmayer',
+silly resolved          email: 'dignifiedquire@gmail.com' },
+silly resolved        { name: 'David Souther', email: 'davidsouther@gmail.com' },
+silly resolved        { name: 'Daniel Aleksandersen' } ],
+silly resolved     dependencies: 
+silly resolved      { 'socket.io': '>= 0.9.0',
+silly resolved        chokidar: '>=0.4.0',
+silly resolved        glob: '>=3.1.11',
+silly resolved        minimatch: '>=0.2.5',
+silly resolved        'http-proxy': '>=0.8.2',
+silly resolved        optimist: '>= 0.3.4',
+silly resolved        'coffee-script': '>= 1.3.3',
+silly resolved        xmlbuilder: '>= 0.4.2' },
+silly resolved     devDependencies: 
+silly resolved      { 'jasmine-node': '>= 1.0.11',
+silly resolved        mocks: '>= 0.0.5',
+silly resolved        grunt: '>= 0.3.11' },
+silly resolved     preferGlobal: true,
+silly resolved     repository: 
+silly resolved      { type: 'git',
+silly resolved        url: 'git://github.com/vojtajina/testacular.git' },
+silly resolved     main: './lib/index',
+silly resolved     bin: { testacular: './bin/testacular' },
+silly resolved     engines: { node: '>= 0.8.4' },
+silly resolved     version: '0.4.0',
+silly resolved     _id: 'testacular@0.4.0',
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.0-3',
+silly resolved     _nodeVersion: 'v0.8.16',
+silly resolved     _defaultsLoaded: true } ]
+info into /usr/lib testacular@0.4.0
+info installOne testacular@0.4.0
+info unbuild /usr/lib/node_modules/testacular
+verbose caching /usr/lib/node_modules/testacular/package.json
+verbose loadDefaults testacular@0.4.0
+info preuninstall testacular@0.4.0
+info uninstall testacular@0.4.0
+verbose unbuild testacular@0.4.0 [ true, '/usr/lib/node_modules', '/usr/lib/node_modules' ]
+verbose binRoot [ '/usr/bin', { testacular: './bin/testacular' } ]
+info postuninstall testacular@0.4.0
+ERR! error installing testacular@0.4.0
+info unbuild /usr/lib/node_modules/testacular
+verbose caching /usr/lib/node_modules/testacular/package.json
+verbose loadDefaults testacular@0.4.0
+info preuninstall testacular@0.4.0
+info uninstall testacular@0.4.0
+verbose unbuild testacular@0.4.0 [ true, '/usr/lib/node_modules', '/usr/lib/node_modules' ]
+verbose binRoot [ '/usr/bin', { testacular: './bin/testacular' } ]
+info postuninstall testacular@0.4.0
+ERR! error rolling back testacular@0.4.0 Error: EACCES, unlink '/usr/lib/node_modules/testacular/LICENSE'
+verbose installOne cb testacular@0.4.0
+ERR! Error: EACCES, unlink '/usr/lib/node_modules/testacular/LICENSE'
+ERR! 
+ERR! Please try running this command again as root/Administrator.
+ERR! 
+ERR! System Linux 2.6.32-36-generic
+ERR! command "node" "/usr/local/bin/npm" "install" "-g" "testacular"
+ERR! cwd /home/rquinn/repos/cards
+ERR! node -v v0.8.16
+ERR! npm -v 1.1.0-3
+ERR! path /usr/lib/node_modules/testacular/LICENSE
+ERR! code EACCES
+ERR! message EACCES, unlink '/usr/lib/node_modules/testacular/LICENSE'
+ERR! errno {}
+verbose exit [ 1, true ]

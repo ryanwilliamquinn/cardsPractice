@@ -1,0 +1,75 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+.suit {
+    float:left;
+    height:108px;
+    margin:20px 0px 0px 20px;
+    outline:solid 1px #666;
+    padding:5px;
+    width:108px;
+}
+
+.innersuit {
+    width:108px;
+    height:108px;
+    margin: auto;
+}
+
+.clubs {
+    background:url(/app/img/clubs.png) 0px 0px no-repeat;
+}
+
+.diamonds {
+    background:url(/app/img/diamonds.png) -4px 0px no-repeat;
+}
+
+.hearts {
+    background:url(/app/img/hearts.png) 0px 0px no-repeat;
+}
+
+.spades {
+    background:url(/app/img/spades.png) 0px 0px no-repeat;
+}
+
+.rank {
+    font-size:100px;
+    float:left;
+    margin-left:20px;
+    outline:solid 1px #666;
+    padding:5px;
+    text-align:center;
+    width:108px;
+}
+
+.clear {
+    clear:both;
+}
