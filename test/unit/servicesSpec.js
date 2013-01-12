@@ -14,13 +14,13 @@ describe('service', function() {
 
   describe('randomNumberService', function() {
     it('should return a number less than the maximum', inject(function(randomNumberService) {
-      expect(randomNumberService.getRandomNumber(0,5)).toBeLessThan(5);
+      expect(randomNumberService.getNumber(0,5)).toBeLessThan(6);
     }));
   });
 
   describe('randomSuitService', function() {
     it('should return a string', inject(function(randomSuitService) {
-      expect(randomSuitService.getRandomSuit()).toBeDefined();
+      expect(randomSuitService.getSuit()).toBeDefined();
     }));
   });
 

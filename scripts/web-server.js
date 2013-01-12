@@ -4,14 +4,16 @@ var util = require('util'),
     http = require('http'),
     fs = require('fs'),
     url = require('url'),
-    events = require('events');
+    events = require('events'),
+    qs = require('querystring');
 
 var DEFAULT_PORT = 8000;
 
 function main(argv) {
   new HttpServer({
     'GET': createServlet(StaticServlet),
-    'HEAD': createServlet(StaticServlet)
+    'HEAD': createServlet(StaticServlet),
+    'POST': createServlet(WorkerServlet)
   }).start(Number(argv[2]) || DEFAULT_PORT);
 }
 
@@ -25,6 +27,10 @@ function escapeHtml(value) {
 function createServlet(Class) {
   var servlet = new Class();
   return servlet.handleRequest.bind(servlet);
+}
+
+function testHandlePost() {
+  util.puts("mmkay");
 }
 
 /**
@@ -65,6 +71,45 @@ HttpServer.prototype.handleRequest_ = function(req, res) {
     handler.call(this, req, res);
   }
 };
+
+function WorkerServlet() {}
+
+WorkerServlet.prototype.handleRequest = function(req, res) {
+    var self = this;
+    var path = ('./' + req.url.pathname).replace('//','/').replace(/%(..)/g, function(match, hex){
+        return String.fromCharCode(parseInt(hex, 16));
+    });
+
+    if (req.method == 'POST') {
+        var body = '';
+        req.on('data', function (data) {
+            body += data;
+        });
+        req.on('end', function () {
+            var POST = qs.parse(body);
+            var data = JSON.parse(POST);
+            util.puts("data:");
+            util.puts(data);
+
+        });
+    }
+
+
+    res.writeHead(200, {
+        'Content-Type': 'text/html'
+    });
+    res.write('<!doctype html>\n');
+    res.write('<title>200 good enough</title>\n');
+    res.write('<h1>wtf ever</h1>');
+    res.write(
+        'this is what you asked for ' +
+            escapeHtml(path) +
+            ' interesting.</p>'
+    );
+    res.end();
+    util.puts('meh: ' + path);
+    return;
+}
 
 /**
  * Handles static content.
