@@ -30,10 +30,8 @@
 }
 
 .suit {
-    float:left;
+    display:inline-block;
     height:108px;
-    margin:20px 0px 0px 20px;
-    outline:solid 1px #666;
     padding:5px;
     width:108px;
 }
@@ -44,27 +42,34 @@
     margin: auto;
 }
 
+.ranks {
+    width: 250px;
+    margin: 0 auto;
+}
+.suits {
+    width: 250px;
+    margin: 0 auto;
+}
+
 .clubs {
-    background:url(/app/img/clubs.png) 0px 0px no-repeat;
+    background:url(/img/clubs.png) 0px 0px no-repeat;
 }
 
 .diamonds {
-    background:url(/app/img/diamonds.png) -4px 0px no-repeat;
+    background:url(/img/diamonds.png) -4px 0px no-repeat;
 }
 
 .hearts {
-    background:url(/app/img/hearts.png) 0px 0px no-repeat;
+    background:url(/img/hearts.png) 0px 0px no-repeat;
 }
 
 .spades {
-    background:url(/app/img/spades.png) 0px 0px no-repeat;
+    background:url(/img/spades.png) 0px 0px no-repeat;
 }
 
 .rank {
     font-size:100px;
-    float:left;
-    margin-left:20px;
-    outline:solid 1px #666;
+    display:inline-block;
     padding:5px;
     text-align:center;
     width:108px;
@@ -72,4 +77,20 @@
 
 .clear {
     clear:both;
+}
+
+.pair {
+    margin: 0 auto;
+}
+
+.content {
+    width:100%;
+}
+
+.red {
+    color:red;
+}
+
+.black {
+    color: black;
 }

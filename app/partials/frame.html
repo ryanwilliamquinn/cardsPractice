@@ -1,8 +1,11 @@
 <!-- show a couple cards here.  only rule is they can't be the exact same card -->
-<div class="rank">{{rank1}}</div>
-<div class="rank">{{rank2}}</div>
-
-<div class="clear suit"><div class="{{suit1}} innersuit"></div></div>
-<div class="suit"><div class="{{suit2}} innersuit"></div></div>
-    </tr>
-</table>
+<div class="content">
+    <div class="ranks">
+        <div class="rank {{rank1color}}">{{rank1}}</div>
+        <div class="rank {{rank2color}}">{{rank2}}</div>
+    </div>
+    <div class="suits">
+        <div class="suit"><div class="{{suit1}} innersuit"></div></div>
+        <div class="suit"><div class="{{suit2}} innersuit"></div></div>
+    </div>
+</div>

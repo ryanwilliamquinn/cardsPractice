@@ -18,28 +18,63 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService) {
     $scope.suit2 = "spades";
     $scope.loadTime; // when the cards were displayed to you
     $scope.respondTime; // when you claimed mastery of them
+    $scope.rank1color;
+    $scope.rank2color;
 
     $scope.refreshCards = function () {
       $scope.rank1 = randomRankService.getRank();
       $scope.rank2 = randomRankService.getRank();
       $scope.suit1 = randomSuitService.getSuit();
       $scope.suit2 = randomSuitService.getSuit();
-      $scope.loadTime = Date.now();
+
+      $scope.checkSuitsForTextColor();
+
+      if ($scope.checkForDuplicates()) {
+        $scope.refreshCards();
+      }
+    }
+
+    $scope.checkSuitsForTextColor = function() {
+        console.log($scope.suit1);
+        if ($scope.suit1 == "hearts" || $scope.suit1 == "diamonds") {
+            console.log("here");
+            $scope.rank1color = "red";
+        } else {
+            $scope.rank1color = "black";
+        }
+        if ($scope.suit2 == "hearts" || $scope.suit2 == "diamonds") {
+            $scope.rank2color = "red";
+        } else {
+            $scope.rank2color = "black";
+        }
+    }
+
+    $scope.checkForDuplicates = function() {
+        return ($scope.rank1 == $scope.rank2 && $scope.suit1 == $scope.suit2);
     }
 
     $scope.refreshCards();
 
     $scope.responded = function() {
+        $scope.sendResults();
         $scope.refreshCards();
+        $scope.loadTime = Date.now();
         $scope.$apply();
     }
 
     //listen for clicks, mofo!
 
     $(document).click(function(event) {
-        $scope.sendResults();
         $scope.responded();
     });
+
+
+    $(document).keydown(function(event) {
+        if(event.which == 32) {
+            $scope.responded();
+        };
+
+    })
 
 
     $scope.sendResults = function() {

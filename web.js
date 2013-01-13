@@ -7,7 +7,7 @@ var util = require('util'),
     events = require('events'),
     qs = require('querystring');
 
-var DEFAULT_PORT = 8000;
+var DEFAULT_PORT = process.env.PORT || 5000;
 
 function main(argv) {
   new HttpServer({
@@ -86,10 +86,15 @@ WorkerServlet.prototype.handleRequest = function(req, res) {
             body += data;
         });
         req.on('end', function () {
-            var POST = qs.parse(body);
-            var data = JSON.parse(POST);
-            util.puts("data:");
+            util.puts("data: ");
+            util.puts(body);
+            var data = JSON.parse(body);
             util.puts(data);
+            util.puts(data.time);
+            //var POST = qs.parse(body);
+            //var data = JSON.parse(POST);
+            //util.puts("data:");
+            //util.puts(data);
 
         });
     }
