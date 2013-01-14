@@ -44,3 +44,15 @@ myApp.service('randomRankService', ["randomNumberService", function(randomNumber
         return rank;
     }
 }]);
+
+myApp.service('viewportSizeService', function() {
+    this.getHeightAndWidth = function() {
+        var e = window
+            , a = 'inner';
+        if ( !( 'innerWidth' in window ) ) {
+            a = 'client';
+            e = document.documentElement || document.body;
+        }
+        return { width : e[ a+'Width' ] , height : e[ a+'Height' ] }
+    }
+})

@@ -11,7 +11,7 @@ function MyCtrl2() {
 }
 MyCtrl2.$inject = [];
 
-function FrameCtrl($scope, $http, randomRankService, randomSuitService) {
+function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewportSizeService) {
     $scope.rank1 = "A";
     $scope.rank2 = "2";
     $scope.suit1 = "hearts";
@@ -29,9 +29,11 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService) {
 
       $scope.checkSuitsForTextColor();
 
+      /*
       if ($scope.checkForDuplicates()) {
         $scope.refreshCards();
       }
+      */
     }
 
     $scope.checkSuitsForTextColor = function() {
@@ -49,9 +51,11 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService) {
         }
     }
 
+    /*
     $scope.checkForDuplicates = function() {
         return ($scope.rank1 == $scope.rank2 && $scope.suit1 == $scope.suit2);
     }
+    */
 
     $scope.refreshCards();
 
@@ -68,6 +72,11 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService) {
         $scope.responded();
     });
 
+    var content = $(".content");
+
+    content.click(function(event) {
+        $scope.responded();
+    })
 
     $(document).keydown(function(event) {
         if(event.which == 32) {
@@ -94,8 +103,15 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService) {
           })
     }
 
+    console.log(viewportSizeService.getHeightAndWidth());
+    var heightAndWidth = viewportSizeService.getHeightAndWidth();
+    var marginTop = (heightAndWidth.height - 265) / 2;
+    console.log("margintTop: " + marginTop);
+
+    content.css("margin-top", marginTop);
+
 
 
 }
-FrameCtrl.$inject = ['$scope', '$http', "randomRankService", "randomSuitService"];
+FrameCtrl.$inject = ['$scope', '$http', "randomRankService", "randomSuitService", "viewportSizeService"];
 

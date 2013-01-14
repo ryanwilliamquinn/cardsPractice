@@ -33,21 +33,21 @@
     display:inline-block;
     height:108px;
     padding:5px;
-    width:108px;
+    width:125px;
 }
 
 .innersuit {
-    width:108px;
+    width:73px;
     height:108px;
     margin: auto;
 }
 
 .ranks {
-    width: 250px;
+    width: 275px;
     margin: 0 auto;
 }
 .suits {
-    width: 250px;
+    width: 275px;
     margin: 0 auto;
 }
 
@@ -72,7 +72,7 @@
     display:inline-block;
     padding:5px;
     text-align:center;
-    width:108px;
+    width:125px;
 }
 
 .clear {
