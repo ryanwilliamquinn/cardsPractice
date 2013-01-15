@@ -116,7 +116,7 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
 
     //console.log(viewportSizeService.getHeightAndWidth());
     var heightAndWidth = viewportSizeService.getHeightAndWidth();
-    var marginTop = (heightAndWidth.height - 265) / 2;
+    var marginTop = (heightAndWidth.height - 365) / 2;
     //console.log("marginTop: " + marginTop);
     content.css("margin-top", marginTop);
 
