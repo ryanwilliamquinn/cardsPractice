@@ -68,19 +68,24 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
         $scope.$apply();
     }
 
+    $("html").height($(document).height());
     //listen for clicks, mofo!
-
-    $(document).bind("touch", function(event) {
+    $("html").hammer({swipe_min_distance : 5}).bind('swipe', function() {
         $scope.responded();
     });
-
-    var content = $(".content");
+    /*
+    $(document).on("tap", function(event) {
+        $scope.responded();
+    });
+    */
 
     /*
     content.click(function(event) {
         $scope.responded();
     })
     */
+
+    var content = $('.content');
 
     $(document).keydown(function(event) {
         if(event.which == 32) {
