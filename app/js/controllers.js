@@ -20,6 +20,8 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
     $scope.respondTime; // when you claimed mastery of them
     $scope.rank1color;
     $scope.rank2color;
+    $scope.username;
+    $scope.recording = false;
 
     $scope.refreshCards = function () {
       $scope.rank1 = randomRankService.getRank();
@@ -37,9 +39,7 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
     }
 
     $scope.checkSuitsForTextColor = function() {
-        console.log($scope.suit1);
         if ($scope.suit1 == "hearts" || $scope.suit1 == "diamonds") {
-            console.log("here");
             $scope.rank1color = "red";
         } else {
             $scope.rank1color = "black";
@@ -60,7 +60,9 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
     $scope.refreshCards();
 
     $scope.responded = function() {
-        $scope.sendResults();
+        if ($scope.recording) {
+            $scope.sendResults();
+        }
         $scope.refreshCards();
         $scope.loadTime = Date.now();
         $scope.$apply();
@@ -68,15 +70,17 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
 
     //listen for clicks, mofo!
 
-    $(document).click(function(event) {
+    $(document).bind("click touch", function(event) {
         $scope.responded();
     });
 
     var content = $(".content");
 
+    /*
     content.click(function(event) {
         $scope.responded();
     })
+    */
 
     $(document).keydown(function(event) {
         if(event.which == 32) {
@@ -92,7 +96,14 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
       var diff = $scope.respondTime - $scope.loadTime;
       //console.log("respond time: " + $scope.respondTime);
       //console.log("diff: " + ($scope.respondTime - $scope.loadTime));
-      $http.post("/timestamp", {time : diff}).
+      var dataObject = {};
+      dataObject.duration = diff;
+      // todo: make 10s 0s for saving the card ranks
+      dataObject.cards = $scope.suit1.substr(0,1) + $scope.suit2.substr(0,1) + $scope.rank1 + $scope.rank2;
+      dataObject.stimulus = $scope.loadTime;
+      dataObject.response = $scope.respondTime;
+      dataObject.username = $scope.username || "default";
+      $http.post("/timestamp", dataObject).
           success(function(data) {
               console.log("success");
               console.log(data);
@@ -103,11 +114,10 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
           })
     }
 
-    console.log(viewportSizeService.getHeightAndWidth());
+    //console.log(viewportSizeService.getHeightAndWidth());
     var heightAndWidth = viewportSizeService.getHeightAndWidth();
     var marginTop = (heightAndWidth.height - 265) / 2;
-    console.log("margintTop: " + marginTop);
-
+    //console.log("marginTop: " + marginTop);
     content.css("margin-top", marginTop);
 
 

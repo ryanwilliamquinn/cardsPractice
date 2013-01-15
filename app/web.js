@@ -92,70 +92,28 @@ WorkerServlet.prototype.handleRequest = function(req, res) {
             var data = JSON.parse(body);
             //util.puts(data);
             //util.puts(data.time);
-            try {
-/*
-                // Create DB connection params
-//                var aDBparams = { host: 'ec2-54-243-228-169.compute-1.amazonaws.com:5432',user: 'ouvklslhwuleaa',password: '4TxsfOwZKCwxmk_0LfBd6_U3uE',database: 'd9ph3n4sve3bst',ssl: true };
 
-                // Create a new Client using the parameters created before
-                // var client = new pg.Client();
-
-
+            console.log(data);
+            if (data) {
+                //local connection
+                //var conString = "postgres://rquinn:postgres@localhost:5432/cardsdb";
+                // heroku connection
                 var conString = "postgres://ouvklslhwuleaa:4TxsfOwZKCwxmk_0LfBd6_U3uE@ec2-54-243-228-169.compute-1.amazonaws.com:5432/d9ph3n4sve3bst";
-                //var conString = "postgres://:@/";
 
                 var client = new pg.Client(conString);
-                client.connect();
                 client.on('error', function(err) {
                     console.error(err.stack);
                 });
-
-
-                client.query({
-                    name: 'select all',
-                    text: "SELECT * from result"
+                //console.log(data.cards);
+                var query = client.query("insert into result (cards, stimulus, response, duration, username) values ($1, $2, $3, $4, $5)", [data.cards, data.stimulus, data.response, data.duration, data.username]);
+                query.on("end", function() {
+                    //fired after last row is emitted
+                    //console.log("query is finished");
+                    client.end();
                 });
 
-                client.query("SELECT * from result", function(err,result) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log("wtf?");
-                        console.log("query: ");
-                        console.log(result);
-                    }
-
-                })
-*/
-            } catch (error) {
-                console.log(error);
+                client.connect();
             }
-
-            /*
-            query.on('row', function(row) {
-               console.log("in here?");
-               console.log(row);
-            });
-
-            query.on('end', function() {
-                client.end();
-            });
-
-            query.on('error', function(error) {
-                console.log("in error");
-                console.log(error);
-            })
-            */
-
-
-            fs.appendFile("cardsData.txt", data.time + "\n", function(err) {
-                if(err) {
-                     console.log(err);
-                } else {
-                     console.log("The file was saved!");
-                }
-            });
-
         });
     }
 
