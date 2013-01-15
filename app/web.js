@@ -9,6 +9,10 @@ var util = require('util'),
     qs = require('querystring');
 
 var DEFAULT_PORT = process.env.PORT || 5000;
+//local connection
+var conString = "postgres://rquinn:postgres@localhost:5432/cardsdb";
+// heroku connection
+//var conString = "postgres://ouvklslhwuleaa:4TxsfOwZKCwxmk_0LfBd6_U3uE@ec2-54-243-228-169.compute-1.amazonaws.com:5432/d9ph3n4sve3bst";
 
 function main(argv) {
   new HttpServer({
@@ -95,10 +99,7 @@ WorkerServlet.prototype.handleRequest = function(req, res) {
 
             console.log(data);
             if (data) {
-                //local connection
-                //var conString = "postgres://rquinn:postgres@localhost:5432/cardsdb";
-                // heroku connection
-                var conString = "postgres://ouvklslhwuleaa:4TxsfOwZKCwxmk_0LfBd6_U3uE@ec2-54-243-228-169.compute-1.amazonaws.com:5432/d9ph3n4sve3bst";
+
 
                 var client = new pg.Client(conString);
                 client.on('error', function(err) {
@@ -152,15 +153,21 @@ StaticServlet.prototype.handleRequest = function(req, res) {
     return String.fromCharCode(parseInt(hex, 16));
   });
   var parts = path.split('/');
-  if (parts[parts.length-1].charAt(0) === '.')
+  if (parts[parts.length-1].charAt(0) === '.') {
     return self.sendForbidden_(req, res, path);
-  fs.stat(path, function(err, stat) {
-    if (err)
-      return self.sendMissing_(req, res, path);
-    if (stat.isDirectory())
-      return self.sendDirectory_(req, res, path);
-    return self.sendFile_(req, res, path);
-  });
+  }
+  if (parts[parts.length-1] == "getTableData") {
+      console.log("in getTableData");
+      return self.sendDbData_(req,res,path);
+  } else {
+      fs.stat(path, function(err, stat) {
+        if (err)
+          return self.sendMissing_(req, res, path);
+        if (stat.isDirectory())
+          return self.sendDirectory_(req, res, path);
+        return self.sendFile_(req, res, path);
+      });
+  }
 }
 
 StaticServlet.prototype.sendError_ = function(req, res, error) {
@@ -244,6 +251,35 @@ StaticServlet.prototype.sendFile_ = function(req, res, path) {
     });
   }
 };
+
+StaticServlet.prototype.sendDbData_ = function(req, res, path) {
+    var self = this;
+    res.setHeader('Content-disposition', 'attachment; filename=tableData.txt');
+    res.setHeader('Content-type', 'text/plain');
+    /*
+    res.writeHead(200, {
+        'Content-Type': StaticServlet.
+            MimeMap[path.split('.').pop()] || 'text/plain'
+    });
+    */
+    var text = "";
+    var client = new pg.Client(conString);
+    client.on('error', function(err) {
+        console.error(err.stack);
+    });
+    //console.log(data.cards);
+    var query = client.query("SELECT * from result");
+    query.on("row", function(row) {
+        text += row.cards + ", " + row.stimulus + ", " + row.response + ", " + row.duration + ", " + row.username + "\n";
+    });
+    query.on("end", function() {
+        res.write(text);
+        //console.log(text);
+        res.end();
+        client.end();
+    });
+    client.connect();
+}
 
 StaticServlet.prototype.sendDirectory_ = function(req, res, path) {
   var self = this;
