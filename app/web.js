@@ -10,9 +10,9 @@ var util = require('util'),
 
 var DEFAULT_PORT = process.env.PORT || 5000;
 //local connection
-var conString = "postgres://rquinn:postgres@localhost:5432/cardsdb";
+//var conString = "postgres://rquinn:postgres@localhost:5432/cardsdb";
 // heroku connection
-//var conString = "postgres://ouvklslhwuleaa:4TxsfOwZKCwxmk_0LfBd6_U3uE@ec2-54-243-228-169.compute-1.amazonaws.com:5432/d9ph3n4sve3bst";
+var conString = "postgres://ouvklslhwuleaa:4TxsfOwZKCwxmk_0LfBd6_U3uE@ec2-54-243-228-169.compute-1.amazonaws.com:5432/d9ph3n4sve3bst";
 
 function main(argv) {
   new HttpServer({

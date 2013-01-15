@@ -70,7 +70,7 @@ function FrameCtrl($scope, $http, randomRankService, randomSuitService, viewport
 
     //listen for clicks, mofo!
 
-    $(document).bind("click touch", function(event) {
+    $(document).bind("touch", function(event) {
         $scope.responded();
     });
 
